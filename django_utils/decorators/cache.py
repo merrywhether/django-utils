@@ -3,14 +3,6 @@ import cPickle as pickle
 import hashlib
 
 
-# This will set a temporary value while ``func`` is being
-# processed. When using threads, this is vital, as otherwise
-# the function can be called several times before it finishes
-# and is put into the cache.
-class MethodNotFinishedError(Exception):
-    pass
-
-
 def cache_function(length):
     """
     A variant of the snippet posted by Jeff Wheeler at
@@ -22,12 +14,6 @@ def cache_function(length):
 
     The decorator itself takes a length argument, which is the number of
     seconds the cache will keep the result around.
-
-    It will put in a MethodNotFinishedError in the cache while the function is
-    processing. This should not matter in most cases, but if the app is using
-    threads, you won't be able to get the previous value, and will need to
-    wait until the function finishes. If this is not desired behavior, you can
-    remove the first two lines after the ``else``.
     """
     def decorator(func):
         def inner_func(*args, **kwargs):

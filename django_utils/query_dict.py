@@ -1,8 +1,8 @@
 def convert_to_querystring(query_dict, clean=True):
-    '''
+    """
     Convert QueryDict into querystring. Useful when doing the GET-POST-REDIRECT pattern.
     Cleans --Select-- and blank values from the querystring by default.
-    '''
+    """
     query_dict_copy = query_dict.copy()
 
     for query in query_dict:
