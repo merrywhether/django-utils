@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.cache import cache
 import cPickle as pickle
 import hashlib
@@ -17,6 +18,9 @@ def cache_function(length):
     """
     def decorator(func):
         def inner_func(*args, **kwargs):
+            if hasattr(settings, 'IS_IN_UNITTEST'):
+                return func(*args, **kwargs)
+
             raw = [func.__name__, func.__module__, args, kwargs]
             pickled = pickle.dumps(raw, protocol=pickle.HIGHEST_PROTOCOL)
             key = hashlib.md5(pickled).hexdigest()
