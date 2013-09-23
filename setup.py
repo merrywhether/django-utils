@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
-version = '0.0.5.0'
-install_requires = []
+version = '0.0.5.1'
+install_requires = ['pytest', 'django-model-utils']
 dependency_links = []
 
 setup(name='django-utils',

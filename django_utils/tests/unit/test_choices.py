@@ -1,6 +1,13 @@
-from django.test import TestCase
-from global_helpers.choices_helper import get_choice_by_id, get_id_by_nice_name
+from django.conf import settings
+
+settings.configure(
+    CACHES={},
+    DATABASES={}
+)
+
+from django_utils.choices import get_choice_by_id, get_id_by_nice_name
 from model_utils import Choices
+from unittest import TestCase
 
 
 TEST_CHOICES = Choices(
@@ -9,7 +16,7 @@ TEST_CHOICES = Choices(
 )
 
 
-class ChoicesHelper(TestCase):
+class Choices(TestCase):
     def test_get_choice_by_nice_name(self):
         id = get_id_by_nice_name(TEST_CHOICES, 'Choice 1')
         self.assertTrue(id == 1)
