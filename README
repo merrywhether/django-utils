@@ -1,0 +1,7 @@
+ABOUT
+=======
+A set of utilities useful when working in Python and Django.
+
+RUN TESTS
+=======
+$ py.test
